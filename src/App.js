@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { regexes } from './regexes.js';
-import { tokenize } from './tokenize.js';
-import { parse } from './parse.js';
-import { renderNode } from './render.js';
+import React, { Component } from "react";
+import { regexes } from "./regexes.js";
+import { tokenize } from "./tokenize.js";
+import { parse } from "./parse.js";
+import { renderNode } from "./render.js";
 
 let tex = `
 
@@ -19,7 +19,7 @@ Yo, man!
 Subsection content.
 
 \\subsection{Bleh bleh}
-Second subsection
+Second \\textbf{subsection}
 
 content.
 \\section{Dude, again}
@@ -44,27 +44,26 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div style={{ display: 'flex', margin: 30 }}>
-          <div style={{ flexGrow: 1, flexShrink: 0 }}>
+        <div style={{ display: "flex", margin: 30 }}>
+          <div>
             <div>
               <textarea
                 value={this.state.tex}
                 name="tex"
                 onChange={this.handleChange}
                 rows={30}
-                style={{ width: '95%' }}
+                style={{ fontFamily: "monospace", width: 400 }}
               />
             </div>
-            <button onClick={this.handleClick} style={{ width: '95%' }}>
+            <button onClick={this.handleClick} style={{ width: 400 }}>
               Render
             </button>
           </div>
           <div
             style={{
-              flexGrow: 1,
-              flexShrink: 0,
+              width: 400,
               padding: 10,
-              backgroundColor: 'papayawhip'
+              backgroundColor: "papayawhip"
             }}
             dangerouslySetInnerHTML={{ __html: this.state.html }}
           />

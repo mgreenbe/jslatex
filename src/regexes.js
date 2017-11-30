@@ -2,44 +2,55 @@ let regexes = [
   {
     re: /^\s+/,
     action: result =>
-      result[0].split('\n').length >= 3 ? { type: 'PAR' } : { type: 'SPACE' }
+      result[0].split("\n").length >= 3 ? { type: "PAR" } : { type: "SPACE" }
   },
   {
     re: /^\\section/,
     action: result => ({
-      type: 'SECTION'
+      type: "SECTION"
     })
   },
   {
     re: /^\\subsection/,
     action: result => ({
-      type: 'SUBSECTION'
+      type: "SUBSECTION"
     })
+  },
+  {
+    re: /^\\begin/,
+    action: result => ({ type: "BEGIN" })
+  },
+  {
+    re: /^\\end/,
+    action: result => ({ type: "END" })
+  },
+  {
+    re: /^\\item/,
+    action: result => ({ type: "ITEM" })
   },
   {
     re: /^{/,
-    action: () => ({ type: 'LBRACE' })
+    action: () => ({ type: "LBRACE" })
   },
   {
-    re: /^}/,
-    action: () => ({ type: 'RBRACE' })
-  },
-  {
-    re: /./,
-    action: result => ({
-      type: 'CHAR',
-      value: result[0]
-    })
-  }
-
-  /*  {
     re: /^\\([a-zA-Z]+)/,
     action: result => ({
-      type: 'COMMAND',
+      type: "COMMAND",
       id: result[1]
     })
   },
   {
+    re: /^}/,
+    action: () => ({ type: "RBRACE" })
+  },
+  {
+    re: /./,
+    action: result => ({
+      type: "CHAR",
+      value: result[0]
+    })
+  }
+  /*  {
     re: /^\[/,
     action: () => ({ type: 'LBRACKET' })
   },
